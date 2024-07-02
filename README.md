@@ -1,35 +1,67 @@
 
-import matplotlib.pyplot as plt
-import networkx as nx
-
-# Define the UML class diagram
-uml_classes = {
-    "Simulator": ["MC", "QMC", "MLMC", "MLQMC", "AMLMC", "AMLQMC"],
-    "Model": ["GBM", "FXVolSto"],
-    "Scheme": ["EulerScheme", "MilsteinScheme", "FXscheme"],
-    "Payoff": ["EUCall", "AsianCall", "UnOCall", "DigitalCall", "LookbackCall"],
-    "Driver": []
+class Simulator {
+  + price(): float
+  + test(): void
+  + test_convergence(): void
 }
 
-# Create a directed graph
-G = nx.DiGraph()
+class MC
+class QMC
+class MLMC
+class MLQMC
+class AMLMC
+class AMLQMC
 
-# Add nodes and edges
-for parent, children in uml_classes.items():
-    G.add_node(parent, shape='rect')
-    for child in children:
-        G.add_node(child, shape='rect')
-        G.add_edge(parent, child)
+Simulator <|-- MC
+Simulator <|-- QMC
+Simulator <|-- MLMC
+Simulator <|-- MLQMC
+Simulator <|-- AMLMC
+Simulator <|-- AMLQMC
 
-# Define node positions
-pos = nx.spring_layout(G)
+class Model {
+  + drift(): float
+  + diffusion(): float
+  + diffusion_d(): float
+}
 
-# Draw nodes and edges
-nx.draw(G, pos, with_labels=True, arrows=True, node_size=3000, node_color='lightblue', font_size=10, font_weight='bold')
+class GBM
+class FXVolSto
 
-# Draw the labels for the nodes
-nx.draw_networkx_labels(G, pos, labels={node: node for node in G.nodes()}, font_size=10, font_weight='bold')
+Model <|-- GBM
+Model <|-- FXVolSto
 
-# Display the graph
-plt.title("UML Class Diagram")
-plt.show()
+class Scheme {
+  + eval_f(): float
+  + eval_y(): float
+}
+
+class EulerScheme
+class MilsteinScheme
+class FXscheme
+
+Scheme <|-- EulerScheme
+Scheme <|-- MilsteinScheme
+Scheme <|-- FXscheme
+
+class Payoff {
+  + eval_payoff(path): float
+}
+
+class EUCall
+class AsianCall
+class UnOCall
+class DigitalCall
+class LookbackCall
+
+Payoff <|-- EUCall
+Payoff <|-- AsianCall
+Payoff <|-- UnOCall
+Payoff <|-- DigitalCall
+Payoff <|-- LookbackCall
+
+class Driver {
+  + buildSimulator(): Simulator
+  + price(): float
+  + compare_simulators(): void
+}
