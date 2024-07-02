@@ -1,45 +1,58 @@
-from graphviz import Digraph
 
-dot = Digraph(comment='Class Diagram')
+import subprocess
 
-# Simulator Interface
-dot.node('Simulator', '<<Interface>>\nSimulator\n- NumberGenerator\n- scheme\n- payoff\n+ price(): float\n+ test(): void\n+ test_convergence(): void')
+# PlantUML code
+uml_code = """
+@startuml
+interface Simulator {
+  + price(): float
+  + test(): void
+  + test_convergence(): void
+}
 
-# Simulator Implementations
-simulators = ['MC', 'QMC', 'MLMC', 'MLQMC', 'AMLMC', 'AMLQMC']
-for sim in simulators:
-    dot.node(sim, sim)
-    dot.edge(sim, 'Simulator')
+class MC
+class QMC
+class MLMC
+class MLQMC
+class AMLMC
+class AMLQMC
 
-# Model Interface
-dot.node('Model', '<<Interface>>\nModel\n+ drift(): float\n+ diffusion(): float\n+ diffusion_d(): float')
+Simulator <|-- MC
+Simulator <|-- QMC
+Simulator <|-- MLMC
+Simulator <|-- MLQMC
+Simulator <|-- AMLMC
+Simulator <|-- AMLQMC
 
-# Model Implementations
-models = ['GBM', 'FXVolSto']
-for model in models:
-    dot.node(model, model)
-    dot.edge(model, 'Model')
+interface Model {
+  + drift(): float
+  + diffusion(): float
+  + diffusion_d(): float
+}
 
-# Scheme Interface
-dot.node('Scheme', '<<Interface>>\nScheme\n- model\n- samplers\n+ eval_f(): float\n+ eval_y(): float')
+class GBM
+class FXVolSto
 
-# Scheme Implementations
-schemes = ['EulerScheme', 'MilsteinScheme', 'FXscheme']
-for scheme in schemes:
-    dot.node(scheme, scheme)
-    dot.edge(scheme, 'Scheme')
+Model <|-- GBM
+Model <|-- FXVolSto
 
-# Payoff Interface
-dot.node('Payoff', '<<Interface>>\nPayoff\n+ eval_payoff(path): float')
+interface Scheme {
+  + eval_f(): float
+  + eval_y(): float
+}
 
-# Payoff Implementations
-payoffs = ['EUCall', 'AsianCall', 'UnOCall', 'DigitalCall', 'LookbackCall']
-for payoff in payoffs:
-    dot.node(payoff, payoff)
-    dot.edge(payoff, 'Payoff')
+class EulerScheme
+class MilsteinScheme
+class FXscheme
 
-# Driver Class
-dot.node('Driver', 'Driver\n+ buildSimulator(): Simulator\n+ price(): float\n+ compare_simulators(): void')
+Scheme <|-- EulerScheme
+Scheme <|-- MilsteinScheme
+Scheme <|-- FXscheme
 
-# Render the diagram
-dot.render('class_diagram', format='png', view=True)
+interface Payoff {
+  + eval_payoff(path): float
+}
+
+class EUCall
+class AsianCall
+class Un​⬤
