@@ -1,15 +1,17 @@
-class Simulator {
-  + price(): float
-  + test(): void
-  + test_convergence(): void
-} --
+Simulator: {
+  shape: class
 
-class MC --
-class QMC --
-class MLMC --
-class MLQMC --
-class AMLMC --
-class AMLQMC --
+  +price(): float
+  +test(): void
+  +test_convergence(): void
+}
+
+MC: { shape: class }
+QMC: { shape: class }
+MLMC: { shape: class }
+MLQMC: { shape: class }
+AMLMC: { shape: class }
+AMLQMC: { shape: class }
 
 Simulator <|-- MC
 Simulator <|-- QMC
@@ -18,40 +20,46 @@ Simulator <|-- MLQMC
 Simulator <|-- AMLMC
 Simulator <|-- AMLQMC
 
-class Model {
-  + drift(): float
-  + diffusion(): float
-  + diffusion_d(): float
-} --
+Model: {
+  shape: class
 
-class GBM --
-class FXVolSto --
+  +drift(): float
+  +diffusion(): float
+  +diffusion_d(): float
+}
+
+GBM: { shape: class }
+FXVolSto: { shape: class }
 
 Model <|-- GBM
 Model <|-- FXVolSto
 
-class Scheme {
-  + eval_f(): float
-  + eval_y(): float
-} --
+Scheme: {
+  shape: class
 
-class EulerScheme --
-class MilsteinScheme --
-class FXscheme --
+  +eval_f(): float
+  +eval_y(): float
+}
+
+EulerScheme: { shape: class }
+MilsteinScheme: { shape: class }
+FXscheme: { shape: class }
 
 Scheme <|-- EulerScheme
 Scheme <|-- MilsteinScheme
 Scheme <|-- FXscheme
 
-class Payoff {
-  + eval_payoff(path): float
-} --
+Payoff: {
+  shape: class
 
-class EUCall --
-class AsianCall --
-class UnOCall --
-class DigitalCall --
-class LookbackCall --
+  +eval_payoff(path): float
+}
+
+EUCall: { shape: class }
+AsianCall: { shape: class }
+UnOCall: { shape: class }
+DigitalCall: { shape: class }
+LookbackCall: { shape: class }
 
 Payoff <|-- EUCall
 Payoff <|-- AsianCall
@@ -59,8 +67,10 @@ Payoff <|-- UnOCall
 Payoff <|-- DigitalCall
 Payoff <|-- LookbackCall
 
-class Driver {
-  + buildSimulator(): Simulator
-  + price(): float
-  + compare_simulators(): void
-} --
+Driver: {
+  shape: class
+
+  +buildSimulator(): Simulator
+  +price(): float
+  +compare_simulators(): void
+}
