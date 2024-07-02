@@ -1,58 +1,35 @@
-import pydot
-from PIL import Image
 
-# Define the UML class diagram in dot format
-uml_code = """
-digraph G {
-    node [shape=record, fontname=Helvetica, fontsize=10];
-    
-    Simulator [label="{Simulator|+ price(): float\\l+ test(): void\\l+ test_convergence(): void\\l}"];
-    MC [label="MC"];
-    QMC [label="QMC"];
-    MLMC [label="MLMC"];
-    MLQMC [label="MLQMC"];
-    AMLMC [label="AMLMC"];
-    AMLQMC [label="AMLQMC"];
-    Model [label="{Model|+ drift(): float\\l+ diffusion(): float\\l+ diffusion_d(): float\\l}"];
-    GBM [label="GBM"];
-    FXVolSto [label="FXVolSto"];
-    Scheme [label="{Scheme|+ eval_f(): float\\l+ eval_y(): float\\l}"];
-    EulerScheme [label="EulerScheme"];
-    MilsteinScheme [label="MilsteinScheme"];
-    FXscheme [label="FXscheme"];
-    Payoff [label="{Payoff|+ eval_payoff(path): float\\l}"];
-    EUCall [label="EUCall"];
-    AsianCall [label="AsianCall"];
-    UnOCall [label="UnOCall"];
-    DigitalCall [label="DigitalCall"];
-    LookbackCall [label="LookbackCall"];
-    Driver [label="{Driver|+ buildSimulator(): Simulator\\l+ price(): float\\l+ compare_simulators(): void\\l}"];
+import matplotlib.pyplot as plt
+import networkx as nx
 
-    Simulator -> MC;
-    Simulator -> QMC;
-    Simulator -> MLMC;
-    Simulator -> MLQMC;
-    Simulator -> AMLMC;
-    Simulator -> AMLQMC;
-    Model -> GBM;
-    Model -> FXVolSto;
-    Scheme -> EulerScheme;
-    Scheme -> MilsteinScheme;
-    Scheme -> FXscheme;
-    Payoff -> EUCall;
-    Payoff -> AsianCall;
-    Payoff -> UnOCall;
-    Payoff -> DigitalCall;
-    Payoff -> LookbackCall;
+# Define the UML class diagram
+uml_classes = {
+    "Simulator": ["MC", "QMC", "MLMC", "MLQMC", "AMLMC", "AMLQMC"],
+    "Model": ["GBM", "FXVolSto"],
+    "Scheme": ["EulerScheme", "MilsteinScheme", "FXscheme"],
+    "Payoff": ["EUCall", "AsianCall", "UnOCall", "DigitalCall", "LookbackCall"],
+    "Driver": []
 }
-"""
 
-# Parse the dot format
-graph = pydot.graph_from_dot_data(uml_code)[0]
+# Create a directed graph
+G = nx.DiGraph()
 
-# Save the graph to a file
-graph.write_png('uml_class_diagram.png')
+# Add nodes and edges
+for parent, children in uml_classes.items():
+    G.add_node(parent, shape='rect')
+    for child in children:
+        G.add_node(child, shape='rect')
+        G.add_edge(parent, child)
 
-# Display the image
-image = Image.open('uml_class_diagram.png')
-image.show()
+# Define node positions
+pos = nx.spring_layout(G)
+
+# Draw nodes and edges
+nx.draw(G, pos, with_labels=True, arrows=True, node_size=3000, node_color='lightblue', font_size=10, font_weight='bold')
+
+# Draw the labels for the nodes
+nx.draw_networkx_labels(G, pos, labels={node: node for node in G.nodes()}, font_size=10, font_weight='bold')
+
+# Display the graph
+plt.title("UML Class Diagram")
+plt.show()
