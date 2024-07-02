@@ -1,75 +1,81 @@
-mermaid_code = """
-classDiagram
-    class Simulator {
-      + price(): float
-      + test(): void
-      + test_convergence(): void
-    }
+import subprocess
 
-    class MC
-    class QMC
-    class MLMC
-    class MLQMC
-    class AMLMC
-    class AMLQMC
+# PlantUML code
+uml_code = """
+@startuml
+interface Simulator {
+  + price(): float
+  + test(): void
+  + test_convergence(): void
+}
 
-    Simulator <|-- MC
-    Simulator <|-- QMC
-    Simulator <|-- MLMC
-    Simulator <|-- MLQMC
-    Simulator <|-- AMLMC
-    Simulator <|-- AMLQMC
+class MC
+class QMC
+class MLMC
+class MLQMC
+class AMLMC
+class AMLQMC
 
-    class Model {
-      + drift(): float
-      + diffusion(): float
-      + diffusion_d(): float
-    }
+Simulator <|-- MC
+Simulator <|-- QMC
+Simulator <|-- MLMC
+Simulator <|-- MLQMC
+Simulator <|-- AMLMC
+Simulator <|-- AMLQMC
 
-    class GBM
-    class FXVolSto
+interface Model {
+  + drift(): float
+  + diffusion(): float
+  + diffusion_d(): float
+}
 
-    Model <|-- GBM
-    Model <|-- FXVolSto
+class GBM
+class FXVolSto
 
-    class Scheme {
-      + eval_f(): float
-      + eval_y(): float
-    }
+Model <|-- GBM
+Model <|-- FXVolSto
 
-    class EulerScheme
-    class MilsteinScheme
-    class FXscheme
+interface Scheme {
+  + eval_f(): float
+  + eval_y(): float
+}
 
-    Scheme <|-- EulerScheme
-    Scheme <|-- MilsteinScheme
-    Scheme <|-- FXscheme
+class EulerScheme
+class MilsteinScheme
+class FXscheme
 
-    class Payoff {
-      + eval_payoff(path): float
-    }
+Scheme <|-- EulerScheme
+Scheme <|-- MilsteinScheme
+Scheme <|-- FXscheme
 
-    class EUCall
-    class AsianCall
-    class UnOCall
-    class DigitalCall
-    class LookbackCall
+interface Payoff {
+  + eval_payoff(path): float
+}
 
-    Payoff <|-- EUCall
-    Payoff <|-- AsianCall
-    Payoff <|-- UnOCall
-    Payoff <|-- DigitalCall
-    Payoff <|-- LookbackCall
+class EUCall
+class AsianCall
+class UnOCall
+class DigitalCall
+class LookbackCall
 
-    class Driver {
-      + buildSimulator(): Simulator
-      + price(): float
-      + compare_simulators(): void
-    }
+Payoff <|-- EUCall
+Payoff <|-- AsianCall
+Payoff <|-- UnOCall
+Payoff <|-- DigitalCall
+Payoff <|-- LookbackCall
+
+class Driver {
+  + buildSimulator(): Simulator
+  + price(): float
+  + compare_simulators(): void
+}
+
+@enduml
 """
 
-# Save Mermaid code to a file
-with open('diagram.mmd', 'w') as f:
-    f.write(mermaid_code)
+# Write PlantUML code to a file
+with open('diagram.uml', 'w') as f:
+    f.write(uml_code)
 
-# Note: To render the diagram, use a Mermaid live editor or integrate with a Markdown editor that supports Mermaid
+# Generate the diagram
+subprocess.run(["plantuml", "diagram.uml"])
