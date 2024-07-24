@@ -1,46 +1,23 @@
-import logging
+@echo off
+REM Open VS Code and navigate to the repository in the terminal
+cd /d "C:\Path\To\Your\Repository"
+start "" "C:\Path\To\VSCode\Code.exe" .
+start "" "C:\Path\To\VSCode\Code.exe"
 
-# Create a custom logger
-logger = logging.getLogger('my_package_logger')
+REM Open Outlook
+start "" "C:\Path\To\Outlook\OUTLOOK.EXE"
 
-# Set the default logging level (could be DEBUG, INFO, WARNING, ERROR, CRITICAL)
-logger.setLevel(logging.DEBUG)
+REM Open TeXstudio
+start "" "C:\Users\YourUsername\Desktop\TeXstudio.lnk"
 
-# Create handlers
-file_handler = logging.FileHandler('my_package.log')
-file_handler.setLevel(logging.DEBUG)
+REM Open Chrome
+start "" "C:\Path\To\Chrome\Application\chrome.exe"
 
-# Create formatters and add them to handlers
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
+REM Open PowerShell and navigate to the log file path
+start "" powershell.exe -NoExit "cd C:\Path\To\Your\Log\File; Get-Content .\my_package.log -Wait"
 
-# Add handlers to the logger
-logger.addHandler(file_handler)
+REM Open File Explorer at the internship folder
+start "" explorer.exe "C:\Path\To\Your\Internship\Folder"
 
-
-
-
-
-
-**********************
-from logging_config import logger
-
-class SomeClass:
-    def __init__(self):
-        self.logger = logger
-        self.logger.info('SomeClass instance created')
-
-    def some_method(self):
-        try:
-            # Some code that might throw an exception
-            pass
-        except Exception as e:
-            self.logger.error('Error occurred in some_method: %s', e)
-
-
-******************************
-tail -f my_package.log
-
-
-
-******************************
+REM Add a pause at the end of the script to keep the command window open
+pause
