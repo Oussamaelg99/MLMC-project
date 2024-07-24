@@ -1,40 +1,46 @@
-import tkinter as tk
-from tkinter.scrolledtext import ScrolledText
-import sys
+import logging
 
-class Logger:
-    def __init__(self, root):
-        self.log_window = tk.Toplevel(root)
-        self.log_window.title("Log Window")
-        
-        self.log_area = ScrolledText(self.log_window, state='disabled')
-        self.log_area.pack(expand=True, fill='both')
-        
-        self.log_window.protocol("WM_DELETE_WINDOW", self.on_closing)
-    
-    def log(self, message):
-        self.log_area.config(state='normal')
-        self.log_area.insert(tk.END, message + '\n')
-        self.log_area.config(state='disabled')
-        self.log_area.see(tk.END)
-    
-    def on_closing(self):
-        self.log_window.destroy()
+# Create a custom logger
+logger = logging.getLogger('my_package_logger')
 
-class PrintLogger:
-    def __init__(self, logger):
+# Set the default logging level (could be DEBUG, INFO, WARNING, ERROR, CRITICAL)
+logger.setLevel(logging.DEBUG)
+
+# Create handlers
+file_handler = logging.FileHandler('my_package.log')
+file_handler.setLevel(logging.DEBUG)
+
+# Create formatters and add them to handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+
+# Add handlers to the logger
+logger.addHandler(file_handler)
+
+
+
+
+
+
+**********************
+from logging_config import logger
+
+class SomeClass:
+    def __init__(self):
         self.logger = logger
-    
-    def write(self, message):
-        if message.strip():  # Avoid logging empty messages
-            self.logger.log(message)
-    
-    def flush(self):
-        pass  # For compatibility with file-like objects
+        self.logger.info('SomeClass instance created')
 
-def setup_logging(root):
-    logger = Logger(root)
-    print_logger = PrintLogger(logger)
-    sys.stdout = print_logger
-    sys.stderr = print_logger  # Redirect stderr as well if needed
-    return logger
+    def some_method(self):
+        try:
+            # Some code that might throw an exception
+            pass
+        except Exception as e:
+            self.logger.error('Error occurred in some_method: %s', e)
+
+
+******************************
+tail -f my_package.log
+
+
+
+******************************
