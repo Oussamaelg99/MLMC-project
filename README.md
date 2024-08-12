@@ -1,23 +1,12 @@
-@echo off
-REM Open VS Code and navigate to the repository in the terminal
-cd /d "C:\Path\To\Your\Repository"
-start "" "C:\Path\To\VSCode\Code.exe" .
-start "" "C:\Path\To\VSCode\Code.exe"
+\section*{Problem Statement}
+In the financial industry, derivative pricing plays a crucial role, often requiring complex and computationally intensive methods. The traditional Quasi-Monte Carlo (QMC) approach, while widely used, struggles with the increasing demands for efficiency and accuracy in high-stakes, large-scale environments. To address these challenges, various Multilevel Monte Carlo (MLMC) techniques have been proposed, each offering potential improvements in computational performance. This research focuses on evaluating five distinct MLMC variants—Adaptive MLMC, MLMC, Weighted MLMC, Adaptive MLQMC, and MLQMC—and comparing their effectiveness against the established QMC method. The goal is to determine whether these advanced methods can provide significant enough performance enhancements to warrant their integration into the bank's production systems.
 
-REM Open Outlook
-start "" "C:\Path\To\Outlook\OUTLOOK.EXE"
+\section*{Objectives}
+The primary aim of this study is to rigorously assess the performance of five MLMC variants—Adaptive MLMC, MLMC, Weighted MLMC, Adaptive MLQMC, and MLQMC—in the context of derivative pricing. This evaluation will involve developing and testing implementations tailored to real-world applications, ensuring that they are scalable and adaptable across various payoff structures and models. A key aspect of the research is to compare these MLMC methods with the traditional QMC approach, particularly in terms of computational efficiency and accuracy. Additionally, the study will explore the impact of parallelization on each method, hypothesizing that certain techniques may derive greater benefits from parallel computing. Ultimately, the research seeks to identify the most effective method for potential adoption in the bank's production environment.
 
-REM Open TeXstudio
-start "" "C:\Users\YourUsername\Desktop\TeXstudio.lnk"
+\section*{Scope of the Work}
+This research encompasses the implementation and comprehensive testing of five MLMC variants—Adaptive MLMC, MLMC, Weighted MLMC, Adaptive MLQMC, and MLQMC—applied to derivative pricing. The implementations will be designed to be as general and extendable as possible, avoiding optimizations specific to particular payoffs or models to ensure broad applicability. However, this generalization may limit performance for certain payoffs, such as digital or barrier options, which could be further optimized in a more tailored approach. The study will include an in-depth analysis of parallelization effects on these methods, with benchmarking against a variety of reference solutions, including closed-form, PDE-based, FFT methods, or highly detailed QMC simulations, depending on the example. Furthermore, the research aims to push beyond existing literature by introducing targeted modifications to these methods to enhance their suitability for industrial-scale applications.
 
-REM Open Chrome
-start "" "C:\Path\To\Chrome\Application\chrome.exe"
+\section*{Significance of the Study}
+This study holds significant implications for improving computational efficiency in derivative pricing, particularly through the application of advanced MLMC methods. By systematically evaluating and optimizing these techniques, the research could lead to substantial reductions in the computational resources required, potentially enhancing both the speed and accuracy of pricing models used in the banking industry. Moreover, the environmental impact of such improvements cannot be overlooked; by decreasing the computational load, the study could contribute to more sustainable practices in financial computing. Beyond the practical benefits, this research also bridges the gap between theoretical advancements and their real-world applications, offering a pathway for integrating cutting-edge MLMC methods into production environments. By ensuring the robustness and scalability of these methods across a diverse set of models and payoffs, the study aims to pave the way for their broader adoption in the financial sector, promoting both efficiency and environmental responsibility.
 
-REM Open PowerShell and navigate to the log file path
-start "" powershell.exe -NoExit "cd C:\Path\To\Your\Log\File; Get-Content .\my_package.log -Wait"
-
-REM Open File Explorer at the internship folder
-start "" explorer.exe "C:\Path\To\Your\Internship\Folder"
-
-REM Add a pause at the end of the script to keep the command window open
-pause
