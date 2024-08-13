@@ -1,57 +1,11 @@
 MLMC project for Monte Carlo Projuct course validation
 
+To thoroughly evaluate the performance and reliability of the implemented algorithms, a comprehensive set of tests will be conducted. These tests are designed to assess various aspects of the algorithms, including their accuracy, sensitivity to input parameters, and computational efficiency.
 
-\documentclass{article}
-\usepackage{amsmath}
-\usepackage{array}
+The first set of tests will focus on convergence to a prescribed error. In these tests, the algorithms will be executed to achieve a predefined level of error, and the number of iterations or computational resources required to reach this accuracy will be recorded. This will provide insight into the efficiency and effectiveness of each algorithm in converging to the desired solution.
 
-\begin{document}
+Next, a sensitivity analysis will be performed to understand the impact of different factors on the algorithms’ performance. Specifically, the effect of Brownian path construction on the accuracy and stability of the algorithms will be examined. This analysis will help to identify the robustness of the algorithms under varying conditions and to pinpoint any specific sensitivities that may affect their reliability.
 
-\begin{table}[h!]
-\centering
-\caption{Mathematical Expressions for Various Financial Instruments}
-\begin{tabular}{| >{\raggedright\arraybackslash}m{3cm} | >{\raggedright\arraybackslash}m{10cm} |}
-\hline
-\textbf{Instrument/Payoff} & \textbf{Mathematical Expression} \\
-\hline
-\textbf{European Call Option} & 
-\[
-\max(S_T - K, 0)
-\]
-where \( S_T \) is the underlying asset price at maturity, and \( K \) is the strike price. \\
-\hline
+Following this, a performance comparison will be conducted, where the algorithms will be run at multiple levels of computational cost. The results will be analyzed to compare the accuracy achieved by each algorithm at different resource levels. This will highlight how each algorithm balances the trade-off between computational effort and accuracy, providing a clear comparison of their efficiency.
 
-\textbf{Discrete Asian Option} & 
-\[
-\max\left(\frac{1}{n} \sum_{i=1}^{n} S_{t_i} - K, 0\right)
-\]
-where \( S_{t_i} \) are the asset prices at discrete observation times \( t_1, t_2, \dots, t_n \), and \( K \) is the strike price. \\
-\hline
-
-\textbf{Barrier Option (Up-and-Out)} & 
-\[
-\begin{cases} 
-\max(S_T - K, 0) & \text{if } S_t < B \text{ for all } t \leq T \\
-0 & \text{if } S_t \geq B \text{ at any time } t \leq T 
-\end{cases}
-\]
-where \( S_T \) is the asset price at maturity, \( K \) is the strike price, and \( B \) is the barrier level. \\
-\hline
-
-\textbf{Forward Accumulator} & 
-\[
-\sum_{i=1}^{n} \max(S_{t_i} - K, 0)
-\]
-where \( S_{t_i} \) are the underlying asset prices at each accumulation date \( t_i \), and \( K \) is the strike price. The payoff accumulates based on the prices at discrete times. \\
-\hline
-
-\textbf{Target Accumulator} & 
-\[
-\min\left(\sum_{i=1}^{n} \max(S_{t_i} - K, 0), T_A\right)
-\]
-where \( T_A \) is the target accumulation level, \( S_{t_i} \) are the asset prices at each accumulation date \( t_i \), and \( K \) is the strike price. The payoff accumulates up to a specified target level. \\
-\hline
-\end{tabular}
-\end{table}
-
-\end{document}
+Lastly, a performance gains analysis will be performed to specifically assess the accuracy improvements offered by the Multilevel Monte Carlo (MLMC) algorithms compared to traditional approaches. In these tests, the accuracy gains achieved by MLMC methods will be quantified and compared against the additional computational costs incurred. This analysis will help to determine the practical benefits of using MLMC algorithms in real-world scenarios, where both accuracy and computational efficiency are critical.
