@@ -1,33 +1,25 @@
-
 \documentclass{beamer}
 
 \begin{document}
 
-\begin{frame}{Parallelization in MLMC}
+\begin{frame}{Multilevel Quasi-Monte Carlo (MLQMC)}
 
-\textbf{Three-Layer Parallelization}:
+\textbf{Concept}:
 \begin{itemize}
-    \item \textbf{Parallelism within samples:} 
-    - Each sample is split across multiple processors for efficient local computation.
-    
-    \item \textbf{Parallelism across samples:} 
-    - Independent samples are distributed across processors for concurrent execution.
-    
-    \item \textbf{Parallelism across levels:} 
-    - Different levels (coarse to fine) are processed simultaneously to maximize computational resource use.
+    \item Combines Quasi-Monte Carlo (QMC) methods with multilevel frameworks for improved accuracy.
+    \item QMC uses low-discrepancy sequences, providing better coverage of the integration domain.
 \end{itemize}
 
-\textbf{Dynamic Scheduling Algorithm}:
+\textbf{Theoretical Results}:
 \begin{itemize}
-    \item Distributes tasks dynamically to balance workload in real-time.
-    \item Prioritizes finer levels while allowing concurrent execution across levels.
-    \item Reduces idle time and improves scalability, even with short execution times per sample.
+    \item Limited theoretical foundation: while improved convergence rates are observed, there is a lack of comprehensive error bounds and complexity results.
+    \item Significant empirical success, but more work is needed on theoretical analysis.
 \end{itemize}
 
-\textbf{Master-Slave Architecture}:
+\textbf{Implementation Challenges}:
 \begin{itemize}
-    \item \textbf{Master:} Assigns tasks and manages communication.
-    \item \textbf{Slaves:} Perform computations in dynamic batches, minimizing communication overhead.
+    \item QMC’s efficiency diminishes in high dimensions without techniques like scrambling.
+    \item Non-smooth integrands reduce the effectiveness of QMC, requiring careful adjustments.
 \end{itemize}
 
 \end{frame}
