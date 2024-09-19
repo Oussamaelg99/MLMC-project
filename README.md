@@ -1,27 +1,61 @@
-\documentclass{beamer}
+\documentclass{report}
+\usepackage{graphicx}  % Required for including images
+\usepackage{lipsum}    % For placeholder text (you can remove this if not needed)
 
 \begin{document}
 
-\begin{frame}{Multilevel Quasi-Monte Carlo (MLQMC)}
+% Create title page
+\begin{titlepage}
 
-\textbf{Concept}:
-\begin{itemize}
-    \item Combines Quasi-Monte Carlo (QMC) methods with multilevel frameworks for improved accuracy.
-    \item QMC uses low-discrepancy sequences, providing better coverage of the integration domain.
-\end{itemize}
+    \centering
+    % Company Logo at the top
+    \includegraphics[width=0.3\textwidth]{company_logo.png} \par
+    \vspace{1cm} % Adjust space between logo and title
+    
+    % Title of the report
+    {\Huge \textbf{Your Report Title} \par}
+    \vspace{2cm}
+    
+    % Company name
+    {\LARGE Company Name \par}
+    \vspace{2cm}
+    
+    % Tutor names
+    {\Large Tutors: \par}
+    {\large Tutor 1 Name \par}
+    {\large Tutor 2 Name \par}
+    \vspace{1cm}
+    
+    % Academic Tutor
+    {\Large Academic Tutor: \par}
+    {\large Academic Tutor Name \par}
+    \vspace{1cm}
+    
+    % Examiner
+    {\Large Examiner: \par}
+    {\large Examiner Name \par}
+    \vspace{1cm}
+    
+    % Your name
+    {\Large Your Name \par}
+    \vspace{2cm}
+    
+    % Logos of your two schools side by side
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{school1_logo.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{school2_logo.png}
+    \end{minipage}
+    
+    \vfill % Adjust space to push content to the bottom
 
-\textbf{Theoretical Results}:
-\begin{itemize}
-    \item Limited theoretical foundation: while improved convergence rates are observed, there is a lack of comprehensive error bounds and complexity results.
-    \item Significant empirical success, but more work is needed on theoretical analysis.
-\end{itemize}
-
-\textbf{Implementation Challenges}:
-\begin{itemize}
-    \item QMC’s efficiency diminishes in high dimensions without techniques like scrambling.
-    \item Non-smooth integrands reduce the effectiveness of QMC, requiring careful adjustments.
-\end{itemize}
-
-\end{frame}
+    % Date at the bottom
+    {\large \today}
+    
+\end{titlepage}
 
 \end{document}
