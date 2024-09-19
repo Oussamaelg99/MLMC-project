@@ -1,61 +1,7 @@
-\documentclass{report}
-\usepackage{graphicx}  % Required for including images
-\usepackage{lipsum}    % For placeholder text (you can remove this if not needed)
+I would like to express my sincere gratitude to all those who supported me throughout the course of this work. First and foremost, I am deeply thankful to my two tutors, [Tutor 1 Name] and [Tutor 2 Name], for their continuous guidance, patience, and invaluable feedback during my time at the Applied Research and Development (R&D) team at Société Générale Corporate & Investment Banking (CIB). Their expertise and insights have been crucial in helping me navigate the complexities of this project.
 
-\begin{document}
+I am also incredibly grateful to Mr. Mike Giles, whose work I have long admired. I was fortunate to receive his advice and support, which provided me with the tools and insights I needed to push this research forward. His generosity and willingness to assist me were deeply appreciated.
 
-% Create title page
-\begin{titlepage}
+Additionally, I would like to thank my professors at [University 1] and [University 2] for their academic guidance, particularly [Academic Tutor’s Name], whose advice has been invaluable. Their teaching has provided me with the strong foundation necessary to undertake this research.
 
-    \centering
-    % Company Logo at the top
-    \includegraphics[width=0.3\textwidth]{company_logo.png} \par
-    \vspace{1cm} % Adjust space between logo and title
-    
-    % Title of the report
-    {\Huge \textbf{Your Report Title} \par}
-    \vspace{2cm}
-    
-    % Company name
-    {\LARGE Company Name \par}
-    \vspace{2cm}
-    
-    % Tutor names
-    {\Large Tutors: \par}
-    {\large Tutor 1 Name \par}
-    {\large Tutor 2 Name \par}
-    \vspace{1cm}
-    
-    % Academic Tutor
-    {\Large Academic Tutor: \par}
-    {\large Academic Tutor Name \par}
-    \vspace{1cm}
-    
-    % Examiner
-    {\Large Examiner: \par}
-    {\large Examiner Name \par}
-    \vspace{1cm}
-    
-    % Your name
-    {\Large Your Name \par}
-    \vspace{2cm}
-    
-    % Logos of your two schools side by side
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[width=0.8\textwidth]{school1_logo.png}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[width=0.8\textwidth]{school2_logo.png}
-    \end{minipage}
-    
-    \vfill % Adjust space to push content to the bottom
-
-    % Date at the bottom
-    {\large \today}
-    
-\end{titlepage}
-
-\end{document}
+Finally, I would like to acknowledge the entire Applied R&D team at Société Générale CIB for creating a stimulating and collaborative environment, and my examiner, [Examiner Name], for taking the time to review this work.
